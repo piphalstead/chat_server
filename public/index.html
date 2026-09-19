@@ -1,8 +1,39 @@
 <html>
   <head>
     <title>My Chat App</title>
-  </head>
+
+<style>
+  .chat_list {
+    border: 1px solid red;
+    flex:1;
+  }
+  .chat_input{
+    border: 1px solid blue;
+  }
+  body {
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  #chat_container {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+</style>
+ </head>
   <body>
     <h1>Welcome to My Chat App</h1>
+
+    <div id="chat_container">
+      <div class="chat_list">hello</div>
+      <div class="chat_input">
+        <input type="text">
+        <button>Send</button>
+      </div>
+    </div>
+
   </body>
 </html>
