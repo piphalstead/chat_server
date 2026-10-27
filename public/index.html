@@ -37,11 +37,14 @@
 
   </body>
   <script>
+    const username = "Pip";
+
     const sendNewMessage = (newMessage) => {
       const newEl = document.createElement("div");
-      newEl.innerText = "pip: " + newMessage;
+      newEl.innerText = username + ": " + newMessage;
       const chatList = document.querySelector(".chat_list");
       chatList.appendChild(newEl);
+      postNewMessage(username,newMessage)
     }
 
     const getAndClearMessage = () => {
@@ -65,5 +68,19 @@
         event.preventDefault()
       }
     })
+
+    const postNewMessage = async (username, newMessage) => await fetch("/message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: newMessage, username }),
+    });
+
+    const getMessages = async () => {
+        const response = await fetch("/message");
+        const result = await response.json();
+        return result;
+    }
   </script>
 </html>
