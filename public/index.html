@@ -41,6 +41,8 @@
   </body>
   <script>
     const username = "Pip";
+    const messages = []
+   
 
     const sendNewMessage = (newMessage) => {
       const newEl = document.createElement("div");
@@ -83,7 +85,20 @@
     const getMessages = async () => {
         const response = await fetch("/message");
         const result = await response.json();
-        return result;
+        return result.messages;
     }
+
+     const populateMessages = async () => {
+      messages.splice()
+      messages.push(...(await getMessages()))
+      messages.forEach(m => {
+        const newEl = document.createElement("div");
+        newEl.innerText = m.username + ": " + m.message;
+        const chatList = document.querySelector(".chat_list");
+        chatList.appendChild(newEl);
+      })
+    }
+
+    populateMessages()
   </script>
 </html>
